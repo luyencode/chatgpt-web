@@ -1,118 +1,132 @@
 # ChatGPT Web
 
 <div style="font-size: 1.5rem;">
-  <a href="./README.md">中文</a> |
-  <a href="./README.en.md">English</a>
+  <a href="./README.md">English</a> |
+  <a href="./README.zh.md">中文</a>
 </div>
 </br>
 
-> 声明：此项目只发布于 Github，基于 MIT 协议，免费且作为开源学习使用。并且不会有任何形式的卖号、付费服务、讨论群、讨论组等行为。谨防受骗。
+> Disclaimer: This project is only released on GitHub, under the MIT License, free and for open-source learning purposes. There will be no account selling, paid services, discussion groups, or forums. Beware of fraud.
 
 ![cover](./docs/c1.png)
 ![cover2](./docs/c2.png)
 
 - [ChatGPT Web](#chatgpt-web)
-	- [介绍](#介绍)
-	- [待实现路线](#待实现路线)
-	- [前置要求](#前置要求)
+	- [Introduction](#introduction)
+	- [Roadmap](#roadmap)
+	- [Prerequisites](#prerequisites)
 		- [Node](#node)
 		- [PNPM](#pnpm)
-		- [填写密钥](#填写密钥)
-	- [安装依赖](#安装依赖)
-		- [后端](#后端)
-		- [前端](#前端)
-	- [测试环境运行](#测试环境运行)
-		- [后端服务](#后端服务)
-		- [前端网页](#前端网页)
-	- [环境变量](#环境变量)
-	- [打包](#打包)
-		- [使用 Docker](#使用-docker)
-			- [Docker 参数示例](#docker-参数示例)
-			- [Docker build \& Run](#docker-build--run)
-			- [Docker compose](#docker-compose)
-		- [使用 Railway 部署](#使用-railway-部署)
-			- [Railway 环境变量](#railway-环境变量)
-		- [手动打包](#手动打包)
-			- [后端服务](#后端服务-1)
-			- [前端网页](#前端网页-1)
-	- [常见问题](#常见问题)
-	- [参与贡献](#参与贡献)
-	- [赞助](#赞助)
+		- [Fill in the Keys](#fill-in-the-keys)
+	- [Install Dependencies](#install-dependencies)
+		- [Backend](#backend)
+		- [Frontend](#frontend)
+	- [Run in Test Environment](#run-in-test-environment)
+		- [Backend Service](#backend-service)
+		- [Frontend Webpage](#frontend-webpage)
+	- [Packaging](#packaging)
+		- [Using Docker](#using-docker)
+			- [Docker Parameter Example](#docker-parameter-example)
+			- [Docker Build \& Run](#docker-build--run)
+			- [Docker Compose](#docker-compose)
+		- [Deployment with Railway](#deployment-with-railway)
+			- [Railway Environment Variables](#railway-environment-variables)
+		- [Manual packaging](#manual-packaging)
+			- [Backend service](#backend-service-1)
+			- [Frontend webpage](#frontend-webpage-1)
+	- [Frequently Asked Questions](#frequently-asked-questions)
+	- [Contributing](#contributing)
+	- [Sponsorship](#sponsorship)
 	- [License](#license)
-## 介绍
 
-支持双模型，提供了两种非官方 `ChatGPT API` 方法
+## Introduction
 
-| 方式                                          | 免费？ | 可靠性     | 质量 |
-| --------------------------------------------- | ------ | ---------- | ---- |
-| `ChatGPTAPI(gpt-3.5-turbo-0301)`                           | 否     | 可靠       | 相对较笨 |
-| `ChatGPTUnofficialProxyAPI(网页 accessToken)` | 是     | 相对不可靠 | 聪明 |
+Supports dual models, provides two unofficial `ChatGPT API` methods:
 
-对比：
-1. `ChatGPTAPI` 使用 `gpt-3.5-turbo-0301` 通过官方`OpenAI`补全`API`模拟`ChatGPT`（最稳健的方法，但它不是免费的，并且没有使用针对聊天进行微调的模型）
-2. `ChatGPTUnofficialProxyAPI` 使用非官方代理服务器访问 `ChatGPT` 的后端`API`，绕过`Cloudflare`（使用真实的的`ChatGPT`，非常轻量级，但依赖于第三方服务器，并且有速率限制）
+| Method                                        | Free?  | Reliability | Quality |
+| --------------------------------------------- | ------ | ----------- | ------- |
+| `ChatGPTAPI(gpt-3.5-turbo-0301)`                           | No     | Reliable    | Relatively clumsy |
+| `ChatGPTUnofficialProxyAPI(Web accessToken)` | Yes    | Relatively unreliable | Smart |
 
+<<<<<<< HEAD
 警告：
 1. 你应该首先使用 `API` 方式
 2. 使用 `API` 时，如果网络不通，那是国内被墙了，你需要自建代理，绝对不要使用别人的公开代理，那是危险的。
 3. 使用 `accessToken` 方式时反向代理将向第三方暴露您的访问令牌，这样做应该不会产生任何不良影响，但在使用这种方法之前请考虑风险。
 4. 使用 `accessToken` 时，不管你是国内还是国外的机器，都会使用代理。默认代理为 [acheong08](https://github.com/acheong08) 大佬的 `https://bypass.churchless.tech/api/conversation`，这不是后门也不是监听，除非你有能力自己翻过 `CF` 验证，用前请知悉。[社区代理](https://github.com/transitive-bullshit/chatgpt-api#reverse-proxy)（注意：只有这两个是推荐，其他第三方来源，请自行甄别）
 5. 把项目发布到公共网络时，你应该设置 `AUTH_SECRET_KEY` 变量添加你的密码访问权限，你也应该修改 `index.html` 中的 `title`，防止被关键词搜索到。
+=======
+Comparison:
+1. `ChatGPTAPI` uses `gpt-3.5-turbo-0301` to simulate `ChatGPT` through the official `OpenAI` completion `API` (the most reliable method, but it is not free and does not use models specifically tuned for chat).
+2. `ChatGPTUnofficialProxyAPI` accesses `ChatGPT`'s backend `API` via an unofficial proxy server to bypass `Cloudflare` (uses the real `ChatGPT`, is very lightweight, but depends on third-party servers and has rate limits).
+>>>>>>> update readme
 
-切换方式：
-1. 进入 `service/.env.example` 文件，复制内容到 `service/.env` 文件
-2. 使用 `OpenAI API Key` 请填写 `OPENAI_API_KEY` 字段 [(获取 apiKey)](https://platform.openai.com/overview)
-3. 使用 `Web API` 请填写 `OPENAI_ACCESS_TOKEN` 字段 [(获取 accessToken)](https://chat.openai.com/api/auth/session)
-4. 同时存在时以 `OpenAI API Key` 优先
+[Details](https://github.com/Chanzhaoyu/chatgpt-web/issues/138)
 
-环境变量：
+Switching Methods:
+1. Go to the `service/.env.example` file and copy the contents to the `service/.env` file.
+2. For `OpenAI API Key`, fill in the `OPENAI_API_KEY` field [(Get apiKey)](https://platform.openai.com/overview).
+3. For `Web API`, fill in the `OPENAI_ACCESS_TOKEN` field [(Get accessToken)](https://chat.openai.com/api/auth/session).
+4. When both are present, `OpenAI API Key` takes precedence.
 
-全部参数变量请查看或[这里](#环境变量)
+Reverse Proxy:
+
+Available when using `ChatGPTUnofficialProxyAPI`.[Details](https://github.com/transitive-bullshit/chatgpt-api#reverse-proxy)
+
+```shell
+# service/.env
+API_REVERSE_PROXY=
+```
+
+Environment Variables:
+
+For all parameter variables, check [here](#docker-parameter-example) or see:
 
 ```
-/service/.env.example
+/service/.env
 ```
 
-## 待实现路线
-[✓] 双模型
+## Roadmap
+[✓] Dual models
 
-[✓] 多会话储存和上下文逻辑
+[✓] Multiple session storage and context logic
 
-[✓] 对代码等消息类型的格式化美化处理
+[✓] Formatting and beautifying code-like message types
 
-[✓] 访问权限控制
+[✓] Access rights control
 
-[✓] 数据导入、导出
+[✓] Data import and export
 
-[✓] 保存消息到本地图片
+[✓] Save message to local image
 
-[✓] 界面多语言
+[✓] Multilingual interface
 
-[✓] 界面主题
+[✓] Interface themes
 
 [✗] More...
 
-## 前置要求
+## Prerequisites
 
 ### Node
 
-`node` 需要 `^16 || ^18 || ^19` 版本（`node >= 14` 需要安装 [fetch polyfill](https://github.com/developit/unfetch#usage-as-a-polyfill)），使用 [nvm](https://github.com/nvm-sh/nvm) 可管理本地多个 `node` 版本
+`node` requires version `^16 || ^18` (`node >= 14` requires installation of [fetch polyfill](https://github.com/developit/unfetch#usage-as-a-polyfill)), and multiple local `node` versions can be managed using [nvm](https://github.com/nvm-sh/nvm).
 
 ```shell
 node -v
 ```
 
 ### PNPM
-如果你没有安装过 `pnpm`
+If you have not installed `pnpm` before:
 ```shell
 npm install pnpm -g
 ```
 
-### 填写密钥
-获取 `Openai Api Key` 或 `accessToken` 并填写本地环境变量 [跳转](#介绍)
+### Fill in the Keys
+
+Get `Openai Api Key` or `accessToken` and fill in the local environment variables [jump](#introduction)
 
 ```
-# service/.env 文件
+# service/.env file
 
 # OpenAI API Key - https://platform.openai.com/overview
 OPENAI_API_KEY=
@@ -121,216 +135,213 @@ OPENAI_API_KEY=
 OPENAI_ACCESS_TOKEN=
 ```
 
-## 安装依赖
+## Install Dependencies
 
-> 为了简便 `后端开发人员` 的了解负担，所以并没有采用前端 `workspace` 模式，而是分文件夹存放。如果只需要前端页面做二次开发，删除 `service` 文件夹即可。
+> To make it easier for `backend developers` to understand, we did not use the front-end `workspace` mode, but stored it in different folders. If you only need to do secondary development of the front-end page, delete the `service` folder.
 
-### 后端
+### Backend
 
-进入文件夹 `/service` 运行以下命令
+Enter the `/service` folder and run the following command
 
 ```shell
 pnpm install
 ```
 
-### 前端
-根目录下运行以下命令
+### Frontend
+Run the following command in the root directory
 ```shell
 pnpm bootstrap
 ```
 
-## 测试环境运行
-### 后端服务
+## Run in Test Environment
+### Backend Service
 
-进入文件夹 `/service` 运行以下命令
+Enter the `/service` folder and run the following command
 
 ```shell
 pnpm start
 ```
 
-### 前端网页
-根目录下运行以下命令
+### Frontend Webpage
+Run the following command in the root directory
 ```shell
 pnpm dev
 ```
 
-## 环境变量
+## Packaging
 
-`API` 可用：
+### Using Docker
 
-- `OPENAI_API_KEY` 和 `OPENAI_ACCESS_TOKEN` 二选一
-- `OPENAI_API_MODEL`  设置模型，可选，默认：`gpt-3.5-turbo`
-- `OPENAI_API_BASE_URL` 设置接口地址，可选，默认：`https://api.openai.com`
+#### Docker Parameter Example
 
-`ACCESS_TOKEN` 可用：
-
-- `OPENAI_ACCESS_TOKEN`  和 `OPENAI_API_KEY` 二选一，同时存在时，`OPENAI_API_KEY` 优先
-- `API_REVERSE_PROXY` 设置反向代理，可选，默认：`https://bypass.churchless.tech/api/conversation`，[社区](https://github.com/transitive-bullshit/chatgpt-api#reverse-proxy)（注意：只有这两个是推荐，其他第三方来源，请自行甄别）
-
-通用：
-
-- `AUTH_SECRET_KEY` 访问权限密钥，可选
-- `MAX_REQUEST_PER_HOUR` 每小时最大请求次数，可选，默认无限
-- `TIMEOUT_MS` 超时，单位毫秒，可选
-- `SOCKS_PROXY_HOST` 和 `SOCKS_PROXY_PORT` 一起时生效，可选
-- `SOCKS_PROXY_PORT` 和 `SOCKS_PROXY_HOST` 一起时生效，可选
-- `HTTPS_PROXY` 支持 `http`，`https`, `socks5`，可选
-- `ALL_PROXY` 支持 `http`，`https`, `socks5`，可选
-
-## 打包
-
-### 使用 Docker
-
-#### Docker 参数示例
+- `OPENAI_API_KEY` one of two
+- `OPENAI_ACCESS_TOKEN` one of two, `OPENAI_API_KEY` takes precedence when both are present
+- `OPENAI_API_BASE_URL` optional, available when `OPENAI_API_KEY` is set
+- `OPENAI_API_MODEL` optional, available when `OPENAI_API_KEY` is set
+- `API_REVERSE_PROXY` optional, available when `OPENAI_ACCESS_TOKEN` is set [Reference](#introduction)
+- `AUTH_SECRET_KEY` Access Password，optional
+- `TIMEOUT_MS` timeout, in milliseconds, optional
+- `SOCKS_PROXY_HOST` optional, effective with SOCKS_PROXY_PORT
+- `SOCKS_PROXY_PORT` optional, effective with SOCKS_PROXY_HOST
+- `HTTPS_PROXY` optional, support http，https, socks5
+- `ALL_PROXY` optional, support http，https, socks5
 
 ![docker](./docs/docker.png)
 
-#### Docker build & Run
+#### Docker Build & Run
 
 ```bash
 docker build -t chatgpt-web .
 
+<<<<<<< HEAD
 # 前台运行
 docker run --name chatgpt-web --rm -it -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
 
 # 后台运行
 docker run --name chatgpt-web -d -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
+=======
+# foreground operation
+docker run --name chatgpt-web --rm -it -p 3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
 
-# 运行地址
+# background operation
+docker run --name chatgpt-web -d -p 3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
+>>>>>>> update readme
+
+# running address
 http://localhost:3002/
 ```
 
-#### Docker compose
+#### Docker Compose
 
-[Hub 地址](https://hub.docker.com/repository/docker/chenzhaoyu94/chatgpt-web/general)
+[Hub Address](https://hub.docker.com/repository/docker/hieunv1996/chatgpt-web/general)
 
 ```yml
 version: '3'
 
 services:
   app:
-    image: chenzhaoyu94/chatgpt-web # 总是使用 latest ,更新时重新 pull 该 tag 镜像即可
+    image: hieunv1996/chatgpt-web # always use latest, pull the tag image again when updating
     ports:
       - 127.0.0.1:3002:3002
     environment:
-      # 二选一
-      OPENAI_API_KEY: sk-xxx
-      # 二选一
-      OPENAI_ACCESS_TOKEN: xxx
-      # API接口地址，可选，设置 OPENAI_API_KEY 时可用
-      OPENAI_API_BASE_URL: xxx
-      # API模型，可选，设置 OPENAI_API_KEY 时可用
-      OPENAI_API_MODEL: xxx
-      # 反向代理，可选
+      # one of two
+      OPENAI_API_KEY: xxxxxx
+      # one of two
+      OPENAI_ACCESS_TOKEN: xxxxxx
+      # api interface url, optional, available when OPENAI_API_KEY is set
+      OPENAI_API_BASE_URL: xxxx
+      # api model, optional, available when OPENAI_API_KEY is set
+      OPENAI_API_MODEL: xxxx
+      # reverse proxy, optional
       API_REVERSE_PROXY: xxx
-      # 访问权限密钥，可选
+      # access password，optional
       AUTH_SECRET_KEY: xxx
-      # 每小时最大请求次数，可选，默认无限
-      MAX_REQUEST_PER_HOUR: 0
-      # 超时，单位毫秒，可选
+      # timeout, in milliseconds, optional
       TIMEOUT_MS: 60000
-      # Socks代理，可选，和 SOCKS_PROXY_PORT 一起时生效
-      SOCKS_PROXY_HOST: xxx
-      # Socks代理端口，可选，和 SOCKS_PROXY_HOST 一起时生效
-      SOCKS_PROXY_PORT: xxx
-      # HTTPS 代理，可选，支持 http，https，socks5
+      # socks proxy, optional, effective with SOCKS_PROXY_PORT
+      SOCKS_PROXY_HOST: xxxx
+      # socks proxy port, optional, effective with SOCKS_PROXY_HOST
+      SOCKS_PROXY_PORT: xxxx
+      # HTTPS Proxy，optional, support http, https, socks5
       HTTPS_PROXY: http://xxx:7890
 ```
-- `OPENAI_API_BASE_URL`  可选，设置 `OPENAI_API_KEY` 时可用
-- `OPENAI_API_MODEL`  可选，设置 `OPENAI_API_KEY` 时可用
-###  使用 Railway 部署
+The `OPENAI_API_BASE_URL` is optional and only used when setting the `OPENAI_API_KEY`.
+The `OPENAI_API_MODEL` is optional and only used when setting the `OPENAI_API_KEY`.
+
+### Deployment with Railway
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/yytmgc)
 
-#### Railway 环境变量
+#### Railway Environment Variables
 
-| 环境变量名称          | 必填                   | 备注                                                                                               |
-| --------------------- | ---------------------- | -------------------------------------------------------------------------------------------------- |
-| `PORT`                | 必填                   | 默认 `3002`
-| `AUTH_SECRET_KEY`          | 可选                   | 访问权限密钥                                        |
-| `MAX_REQUEST_PER_HOUR`          | 可选                   | 每小时最大请求次数，可选，默认无限                                        |
-| `TIMEOUT_MS`          | 可选                   | 超时时间，单位毫秒                                                                             |
-| `OPENAI_API_KEY`      | `OpenAI API` 二选一    | 使用 `OpenAI API` 所需的 `apiKey` [(获取 apiKey)](https://platform.openai.com/overview)            |
-| `OPENAI_ACCESS_TOKEN` | `Web API` 二选一       | 使用 `Web API` 所需的 `accessToken` [(获取 accessToken)](https://chat.openai.com/api/auth/session) |
-| `OPENAI_API_BASE_URL`   | 可选，`OpenAI API` 时可用 |  `API`接口地址  |
-| `OPENAI_API_MODEL`   | 可选，`OpenAI API` 时可用 |  `API`模型  |
-| `API_REVERSE_PROXY`   | 可选，`Web API` 时可用 | `Web API` 反向代理地址 [详情](https://github.com/transitive-bullshit/chatgpt-api#reverse-proxy)    |
-| `SOCKS_PROXY_HOST`   | 可选，和 `SOCKS_PROXY_PORT` 一起时生效 | Socks代理    |
-| `SOCKS_PROXY_PORT`   | 可选，和 `SOCKS_PROXY_HOST` 一起时生效 | Socks代理端口    |
-| `HTTPS_PROXY`   | 可选 | HTTPS 代理，支持 http，https, socks5    |
-| `ALL_PROXY`   | 可选 | 所有代理 代理，支持 http，https, socks5    |
+| Environment Variable | Required | Description                                                                                       |
+| -------------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `PORT`               | Required | Default: `3002`                                                                                   |
+| `AUTH_SECRET_KEY`         | Optional | access password                                                                          |
+| `TIMEOUT_MS`         | Optional | Timeout in milliseconds                                                                      |
+| `OPENAI_API_KEY`     | Optional | Required for `OpenAI API`. `apiKey` can be obtained from [here](https://platform.openai.com/overview). |
+| `OPENAI_ACCESS_TOKEN`| Optional | Required for `Web API`. `accessToken` can be obtained from [here](https://chat.openai.com/api/auth/session).|
+| `OPENAI_API_BASE_URL`  | Optional, only for `OpenAI API` |  API endpoint.                                                        |
+| `OPENAI_API_MODEL`  | Optional, only for `OpenAI API` |  API model.                                                        |
+| `API_REVERSE_PROXY`  | Optional, only for `Web API` | Reverse proxy address for `Web API`. [Details](https://github.com/transitive-bullshit/chatgpt-api#reverse-proxy) |
+| `SOCKS_PROXY_HOST`   | Optional, effective with `SOCKS_PROXY_PORT` | Socks proxy.                      |
+| `SOCKS_PROXY_PORT`   | Optional, effective with `SOCKS_PROXY_HOST` | Socks proxy port.                 |
+| `HTTPS_PROXY`   | Optional | HTTPS Proxy.                 |
+| `ALL_PROXY`   | Optional | ALL Proxy.                 |
 
-> 注意: `Railway` 修改环境变量会重新 `Deploy`
+> Note: Changing environment variables in Railway will cause re-deployment.
 
-### 手动打包
-#### 后端服务
-> 如果你不需要本项目的 `node` 接口，可以省略如下操作
+### Manual packaging
 
-复制 `service` 文件夹到你有 `node` 服务环境的服务器上。
+#### Backend service
+
+> If you don't need the `node` interface of this project, you can skip the following steps.
+
+Copy the `service` folder to a server that has a `node` service environment.
 
 ```shell
-# 安装
+# Install
 pnpm install
 
-# 打包
+# Build
 pnpm build
 
-# 运行
+# Run
 pnpm prod
 ```
 
-PS: 不进行打包，直接在服务器上运行 `pnpm start` 也可
+PS: You can also run `pnpm start` directly on the server without packaging.
 
-#### 前端网页
+#### Frontend webpage
 
-1、修改根目录下 `.env` 文件中的 `VITE_GLOB_API_URL` 为你的实际后端接口地址
+1. Refer to the root directory `.env.example` file content to create `.env` file, modify `VITE_GLOB_API_URL` in `.env` at the root directory to your actual backend interface address.
+2. Run the following command in the root directory and then copy the files in the `dist` folder to the root directory of your website service.
 
-2、根目录下运行以下命令，然后将 `dist` 文件夹内的文件复制到你网站服务的根目录下
-
-[参考信息](https://cn.vitejs.dev/guide/static-deploy.html#building-the-app)
+[Reference information](https://cn.vitejs.dev/guide/static-deploy.html#building-the-app)
 
 ```shell
 pnpm build
 ```
 
-## 常见问题
-Q: 为什么 `Git` 提交总是报错？
+## Frequently Asked Questions
 
-A: 因为有提交信息验证，请遵循 [Commit 指南](./CONTRIBUTING.md)
+Q: Why does Git always report an error when committing?
 
-Q: 如果只使用前端页面，在哪里改请求接口？
+A: Because there is submission information verification, please follow the [Commit Guidelines](./CONTRIBUTING.en.md).
 
-A: 根目录下 `.env` 文件中的 `VITE_GLOB_API_URL` 字段。
+Q: Where to change the request interface if only the frontend page is used?
 
-Q: 文件保存时全部爆红?
+A: The `VITE_GLOB_API_URL` field in the `.env` file at the root directory.
 
-A: `vscode` 请安装项目推荐插件，或手动安装 `Eslint` 插件。
+Q: All red when saving the file?
 
-Q: 前端没有打字机效果？
+A: For `vscode`, please install the recommended plug-in of the project or manually install the `Eslint` plug-in.
 
-A: 一种可能原因是经过 Nginx 反向代理，开启了 buffer，则 Nginx 会尝试从后端缓冲一定大小的数据再发送给浏览器。请尝试在反代参数后添加 `proxy_buffering off;`，然后重载 Nginx。其他 web server 配置同理。
+Q: Why doesn't the frontend have a typewriter effect?
 
-## 参与贡献
+A: One possible reason is that after Nginx reverse proxying, buffering is turned on, and Nginx will try to buffer a certain amount of data from the backend before sending it to the browser. Please try adding `proxy_buffering off;` after the reverse proxy parameter and then reloading Nginx. Other web server configurations are similar.
 
-贡献之前请先阅读 [贡献指南](./CONTRIBUTING.md)
+## Contributing
 
-感谢所有做过贡献的人!
+Please read the [Contributing Guidelines](./CONTRIBUTING.en.md) before contributing.
+
+Thanks to all the contributors!
 
 <a href="https://github.com/Chanzhaoyu/chatgpt-web/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Chanzhaoyu/chatgpt-web" />
 </a>
 
-## 赞助
+## Sponsorship
 
-如果你觉得这个项目对你有帮助，并且情况允许的话，可以给我一点点支持，总之非常感谢支持～
+If you find this project helpful and circumstances permit, you can give me a little support. Thank you very much for your support~
 
 <div style="display: flex; gap: 20px;">
 	<div style="text-align: center">
-		<img style="max-width: 100%" src="./docs/wechat.png" alt="微信" />
+		<img style="max-width: 100%" src="./docs/wechat.png" alt="WeChat" />
 		<p>WeChat Pay</p>
 	</div>
 	<div style="text-align: center">
-		<img style="max-width: 100%" src="./docs/alipay.png" alt="支付宝" />
+		<img style="max-width: 100%" src="./docs/alipay.png" alt="Alipay" />
 		<p>Alipay</p>
 	</div>
 </div>
