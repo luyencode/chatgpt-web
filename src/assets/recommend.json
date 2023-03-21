@@ -1,7 +1,13 @@
 [
   {
+    "key": "chatgpt-prompt-collection-en",
+    "desc": "Nothing1024/chatgpt-prompt-collection",
+    "downloadUrl": "https://github.com/Nothing1024/chatgpt-prompt-collection/blob/main/awesome-chatgpt-prompts-en.json",
+    "url": "https://github.com/Nothing1024/chatgpt-prompt-collection"
+  },
+  {
     "key": "awesome-chatgpt-prompts-zh",
-    "desc": "ChatGPT 中文调教指南",
+    "desc": "PlexPt/awesome-chatgpt-prompts-zh",
     "downloadUrl": "https://raw.githubusercontent.com/PlexPt/awesome-chatgpt-prompts-zh/main/prompts-zh.json",
     "url": "https://github.com/PlexPt/awesome-chatgpt-prompts-zh"
   },
