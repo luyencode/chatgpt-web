@@ -48,6 +48,7 @@ const show = computed({
             <General />
           </div>
         </NTabPane>
+<<<<<<< HEAD
         <NTabPane v-if="isChatGPTAPI" name="Advanced" tab="Advanced">
           <template #tab>
             <SvgIcon class="text-lg" icon="ri:equalizer-line" />
@@ -58,6 +59,9 @@ const show = computed({
           </div>
         </NTabPane>
         <NTabPane name="Config" tab="Config">
+=======
+        <NTabPane name="About" tab="About">
+>>>>>>> Update language
           <template #tab>
             <SvgIcon class="text-lg" icon="ri:list-settings-line" />
             <span class="ml-2">{{ $t('setting.config') }}</span>
