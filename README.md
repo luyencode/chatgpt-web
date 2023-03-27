@@ -1,8 +1,8 @@
 # ChatGPT Web
 
 <div style="font-size: 1.5rem;">
-  <a href="./README.md">English</a> |
-  <a href="./README.zh.md">中文</a>
+  <a href="./README.md">中文</a> |
+  <a href="./README.en.md">English</a>
 </div>
 </br>
 
@@ -48,18 +48,9 @@ Supports dual models, provides two unofficial `ChatGPT API` methods:
 | `ChatGPTAPI(gpt-3.5-turbo-0301)`                           | No     | Reliable    | Relatively clumsy |
 | `ChatGPTUnofficialProxyAPI(Web accessToken)` | Yes    | Relatively unreliable | Smart |
 
-<<<<<<< HEAD
-警告：
-1. 你应该首先使用 `API` 方式
-2. 使用 `API` 时，如果网络不通，那是国内被墙了，你需要自建代理，绝对不要使用别人的公开代理，那是危险的。
-3. 使用 `accessToken` 方式时反向代理将向第三方暴露您的访问令牌，这样做应该不会产生任何不良影响，但在使用这种方法之前请考虑风险。
-4. 使用 `accessToken` 时，不管你是国内还是国外的机器，都会使用代理。默认代理为 [acheong08](https://github.com/acheong08) 大佬的 `https://bypass.churchless.tech/api/conversation`，这不是后门也不是监听，除非你有能力自己翻过 `CF` 验证，用前请知悉。[社区代理](https://github.com/transitive-bullshit/chatgpt-api#reverse-proxy)（注意：只有这两个是推荐，其他第三方来源，请自行甄别）
-5. 把项目发布到公共网络时，你应该设置 `AUTH_SECRET_KEY` 变量添加你的密码访问权限，你也应该修改 `index.html` 中的 `title`，防止被关键词搜索到。
-=======
 Comparison:
 1. `ChatGPTAPI` uses `gpt-3.5-turbo-0301` to simulate `ChatGPT` through the official `OpenAI` completion `API` (the most reliable method, but it is not free and does not use models specifically tuned for chat).
 2. `ChatGPTUnofficialProxyAPI` accesses `ChatGPT`'s backend `API` via an unofficial proxy server to bypass `Cloudflare` (uses the real `ChatGPT`, is very lightweight, but depends on third-party servers and has rate limits).
->>>>>>> update readme
 
 [Details](https://github.com/Chanzhaoyu/chatgpt-web/issues/138)
 
@@ -193,19 +184,11 @@ pnpm dev
 ```bash
 docker build -t chatgpt-web .
 
-<<<<<<< HEAD
-# 前台运行
+# foreground operation
 docker run --name chatgpt-web --rm -it -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
 
-# 后台运行
-docker run --name chatgpt-web -d -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
-=======
-# foreground operation
-docker run --name chatgpt-web --rm -it -p 3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
-
 # background operation
-docker run --name chatgpt-web -d -p 3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
->>>>>>> update readme
+docker run --name chatgpt-web -d -p 127.0.0.1:3002:3002 --env OPENAI_API_KEY=your_api_key chatgpt-web
 
 # running address
 http://localhost:3002/
@@ -213,14 +196,14 @@ http://localhost:3002/
 
 #### Docker Compose
 
-[Hub Address](https://hub.docker.com/repository/docker/hieunv1996/chatgpt-web/general)
+[Hub Address](https://hub.docker.com/repository/docker/chenzhaoyu94/chatgpt-web/general)
 
 ```yml
 version: '3'
 
 services:
   app:
-    image: hieunv1996/chatgpt-web # always use latest, pull the tag image again when updating
+    image: chenzhaoyu94/chatgpt-web # always use latest, pull the tag image again when updating
     ports:
       - 127.0.0.1:3002:3002
     environment:
@@ -320,6 +303,10 @@ A: For `vscode`, please install the recommended plug-in of the project or manual
 Q: Why doesn't the frontend have a typewriter effect?
 
 A: One possible reason is that after Nginx reverse proxying, buffering is turned on, and Nginx will try to buffer a certain amount of data from the backend before sending it to the browser. Please try adding `proxy_buffering off;` after the reverse proxy parameter and then reloading Nginx. Other web server configurations are similar.
+
+Q: The content returned is incomplete?
+
+A: There is a length limit for the content returned by the API each time. You can modify the `VITE_GLOB_OPEN_LONG_REPLY` field in the `.env` file under the root directory, set it to `true`, and rebuild the front-end to enable the long reply feature, which can return the full content. It should be noted that using this feature may bring more API usage fees.
 
 ## Contributing
 
